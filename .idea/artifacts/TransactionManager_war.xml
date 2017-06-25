@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="TransactionManager:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="TransactionManager-1.0.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="TransactionManager:war exploded" />
+    </root>
+  </artifact>
+</component>
