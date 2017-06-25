@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- 指定了当前pom的版本 -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 主项目标识：反写地址+项目名 -->
+    <groupId>top.bigpong.TransactionManager</groupId>
+    <!-- 实际项目中的模块标识：项目名+模块名 -->
+    <artifactId>TransactionManager</artifactId>
+    <!-- 当前项目的版本号，一般是三个数据，1：大版本号，2：分支号，3、小版本号
+        snapshot：快照版本
+        alpha：内部测试
+        beta：公测
+        release：稳定
+        GA：正式发布
+    -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- 打包类型：默认是jar -->
+    <packaging>war</packaging>
+    <!-- 如果是聚合模块／（继承）父模块：<packaging>pom</packaging> -->
+
+    <!-- 父模块属性定义 -->
+    <!--<properties>-->
+        <!--<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+        <!--<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>-->
+        <!--<project.image.prefix>iscs</project.image.prefix>-->
+    <!--</properties>-->
+
+    <!-- 项目描述名，产生项目文档的时候才有用 -->
+    <name></name>
+    <!-- 项目的地址 -->
+    <url></url>
+    <!-- 项目的描述 -->
+    <description></description>
+    <!-- 开发人员列表 -->
+    <developers></developers>
+    <!-- 一些开源的许可证信息 -->
+    <licenses></licenses>
+    <!-- 组织信息 -->
+    <organization></organization>
+
+    <!-- 依赖列表 -->
+    <dependencies>
+        <!-- 依赖项 -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+            <!--<type></type>-->
+            <!-- 依赖的范围：构建的jar只在测试的时候有用 -->
+            <scope>test</scope>
+            <!-- 设置依赖是否可选,默认是false，可以继承父类，如果是true，需要显式的引入该依赖 -->
+            <optional>false</optional>
+            <!--排除依赖传递列表：
+                如果a依赖b,b依赖c，则由于依赖的传递性，a就依赖c。
+                如果不让a依赖c，则需要使用排除依赖传递
+            -->
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<artifactId></artifactId>-->
+                    <!--<groupId></groupId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.3.3.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit-dep</artifactId>
+            <version>4.8.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- 一般是聚合模块就是父模块了 -->
+    <!-- 依赖管理:不会被引入到实际的依赖中，一般定义在父模块中，用于子模块继承 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>1.7.0</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 用于子模块中对父模块的继承 -->
+    <!--<parent>-->
+        <!-- 引入父pom的坐标 -->
+    <!--</parent>-->
+
+    <!-- 插件管理 -->
+    <build>
+        <plugins>
+            <plugin>
+                <!-- 使用jetty容器 -->
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.6.v20170531</version>
+                <!-- 使用tomcat容器启动 -->
+                <!--<groupId>org.apache.tomcat.maven</groupId>-->
+                <!--<artifactId>tomcat7-maven-plugin</artifactId>-->
+                <!--<version>2.2</version>-->
+                <executions>
+                    <execution>
+                        <!-- 在打包成功之后使用jetty:run来运行jetty服务 -->
+                        <phase>package</phase>
+                        <goals>run</goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- 用于聚合多个模块，一起编译 -->
+    <!--<modules>-->
+        <!--<module>子模块1</module>-->
+        <!--<module>子模块2</module>-->
+    <!--</modules>-->
+</project>
